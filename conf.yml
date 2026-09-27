@@ -1,0 +1,43 @@
+# config file version
+version: 1
+
+# where the router page will be hosted
+domain: "revproxy.lan"
+
+# ip address where rexy will bind
+bind_to_ip: "0.0.0.0"
+
+# set to 0 to disable HTTP
+http_port: 80
+
+# set to 0 to disable HTTPS
+https_port: 0
+
+# the proxy will make requests with HTTPS, instead of the original protocol
+# redirect_as_https: false
+
+# SSL configurations
+ssl:
+  # leave these fields empty if you dont have a certificate
+  # this will also disable https
+  certificate_file: ""
+  private_key_file: ""
+  force_secure_conection: true
+  
+  # do not verify certificates (for testing)
+  insecure_skip_verify: true
+
+# domain mappings
+mapping:
+  # add your domain mappings here
+
+  example.revproxy.lan:
+    # scheme://host[:port]
+    redirect_to: "https://localhost:8000"
+
+    # note: this config is still experimental
+    https: "auto"  # auto (default)/force/off 
+
+  search.website.com:
+    redirect_to: "http://localhost:8000"
+

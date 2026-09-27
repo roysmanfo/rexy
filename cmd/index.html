@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RevProxy Router</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+    <style>
+        .font-mono{
+            font-family: monospace
+        }
+    </style>
+</head>
+<body>
+  <main class="container my-5">
+    <h2 class="text-center fw-semibold">Registered Services</h2>
+      <form class="w-auto mx-3 my-5">
+        <input type="search" class="form-control" id="search" placeholder="Search a service" aria-describedby="search">
+      </form>
+      <table class="table table-hover table-dark table-borderless">
+        <thead>
+          <tr class="border-bottom">
+            <th scope="col">Domain</th>
+            <th scope="col-2">Redirects to</th>
+          </tr>
+        </thead>
+        <tbody >
+          {{ .Domains }}
+        </tbody>
+      </table>
+      <section class="position-fixed bottom-0 py-4">
+        <a href="/cert">Dowload certificate</a>
+      </section>
+    </main>
+    <script>
+        const search = document.querySelector("input#search");
+        const domains = document.querySelectorAll(".entry");
+
+        search.addEventListener("input", (e) => {
+            if (!search.value) search.value = ""
+            
+            const query = search.value.trim().toLowerCase();
+            domains.forEach(d => {
+                d.dataset.domain.toLowerCase().search(query) == -1
+                ? d.classList.add("d-none")
+                : d.classList.remove("d-none");
+            })
+        })
+    </script>
+</body>
+</html>
+
