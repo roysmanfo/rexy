@@ -14,8 +14,8 @@ Easily redirect requests to internal services, or private domains.
 
 ## Usage
 1. Start a simple http server (ex. `python3 -m http.server` or `bunx serve`) in the [sample website folder](./website/)
-2. Complete the [`conf.yml`](./conf.yml) file with your own domain mappings (ex. `example.revproxy.lan` -> `localhoost:8080`)
-3. Run `go run ./cmd/ -conf ./conf.yml` to start Rexy and monitor the logs
+2. Complete the [`conf.yml`](./conf.yml) file with your own domain mappings (ex. `example.revproxy.lan` -> `localhost:8080`)
+3. Run `go run . -conf ./conf.yml` to start Rexy and monitor the logs
 4. Visit the configured URL in your browser (you may need to configure your DNS to point to Rexy)
 
 you should see something like this
@@ -23,8 +23,11 @@ you should see something like this
 
 ## Build Rexy from source
 1. Make sure go >=1.23 is installed on the system
-2. Run `go build -o rexy ./...` (`rexy.exe` on windows) 
+2. Run `go build -o rexy .` (`rexy.exe` on windows) 
 
+> [!NOTE]  
+> To make the `-version` flag work, compile rexy as  
+> `go build -ldflags="-X 'main.version=$(git describe --tags --always)'" -o rexy .`
 
 ## Important notice
 On linux, Rexy might not be able to bind to well-known ports by default, unless elevated provileges are given.  
