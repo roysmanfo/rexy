@@ -1,6 +1,9 @@
-# Rexy
-Simple, light and fast YAML based reverse proxy.  
-Easily redirect requests to internal services, or private domains.
+![rexy banner](./img/rexy_banner_with_title.png)
+  
+<h3 align="center">
+  Simple, light and fast YAML based reverse proxy.  <br>
+  Easily redirect requests to internal services, or private domains.
+</h3> 
 
 ## Features
 
